@@ -8,6 +8,7 @@ import Login from "./Login";
 import Register from "./Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
+import Cart from "./Cart";
 export const AppContext = createContext();
 function App() {
   const [users,setUsers] = useState([])
@@ -21,6 +22,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
           <Footer />
         </BrowserRouter>
