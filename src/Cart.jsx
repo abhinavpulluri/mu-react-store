@@ -8,7 +8,7 @@ import Login from "./Login";
 export default function () {
     
     const Navigate = useNavigate();
-    const {cart, setCart, email} = useContext(AppContext);
+    const {cart, setCart, email, orders, setOrders} = useContext(AppContext);
 
     const incrementQty = () => {
         setCart({...cart, qty: cart.qty + 1});
@@ -22,6 +22,11 @@ export default function () {
 
     function handleLogin() {
         Navigate('/login');
+    }
+    function placeOrder() {
+        setOrders([...orders, cart]);
+        setCart({});
+        Navigate('/order');
     }
   return (
     <div>
@@ -39,7 +44,7 @@ export default function () {
       <h2>Order Value:{cart.price * cart.qty}</h2>
       <hr />
       <p>
-        {email ? <button>Place Order</button> : <button onClick= {handleLogin}>Login to Order</button>} 
+        {email ? <button onClick = {placeOrder} >Place Order</button> : <button onClick= {handleLogin}>Login to Order</button>} 
       </p>
     </div>
   )
