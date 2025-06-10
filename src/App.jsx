@@ -12,12 +12,12 @@ export const AppContext = createContext();
 
 function App() {
   const [user, setUser] = useState({});
-
+  const [users, setUsers] = useState([]);
 
   return (
     //empty tag is called fragment
     <div>
-      <AppContext.Provider value = {{user, setUser}}>
+      <AppContext.Provider value = {{ user, setUser, users, setUsers }}>
         <Router>
           <Header name = "Mu-react-store"/>
           <Routes>

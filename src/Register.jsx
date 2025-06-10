@@ -1,58 +1,84 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {useState} from 'react'
-
+import React from "react";
+import { Link } from "react-router-dom";
+import { useState,useContext } from "react";
+import {AppContext} from "./App";
 export default function Register() {
-    
-    const [count, setCount] = useState(0);
-    const [showDetails, setShowDetails] = useState(false);
+  const {user,setUser,users,setUsers}=useContext(AppContext);
+  const [count, setCount] = useState(0);
+  const [submitData,setsubmitData]=useState(null);
+  const [a, setA] = useState(0);
+  const [b, setB] = useState(0);
+  const [result, setResult] = useState();
+  const handleClick = () => {
+    alert("Hello World");
+  };
+  const updateCount = () => {
+    setCount(count + 1);
+  };
 
-    const handleClick = () => {
-        alert("Hello World");
-    };
-    const updateCount = () => {
-        setCount(count + 1);
-    };
-    const decreaseCount = () => {
-        setCount(count - 1);
-    }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setShowDetails(true);
-        console.log('Name:', user.name, 'Email:', user.email, 'Password:', user.pass);
-    };
-
+  const findSum = () => {
+    setResult(Number(a) + Number(b));
+  };
+  let submitContent;
+  if(submitData){
+    console.log(submitData.name,submitData.email);
+    submitContent=(
+        <div>
+            <h3>User Info</h3>
+            <p>Name:{submitData.name}</p>
+            <p>Email:{submitData.email}</p>
+        </div>
+    )
+  }
   return (
     <div>
       <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <p><input type="text" placeholder='Name' onChange={(e) => setUser({ ...user, name: e.target.value})}/></p>
-        <p><input type="email" placeholder='Email' onChange={(e) => setUser({ ...user, email: e.target.value })}/></p>
-        <p><input type="password" placeholder='Password' onChange={(e) => setUser({ ...user, pass: e.target.value })}/></p>
-        <p><button type="submit">Submit</button></p>
-      </form>
-      {/* {showDetails && (
-        <div style={{marginTop: '1em', border: '1px solid #ccc', padding: '1em'}}>
-          <h3>Registration Details</h3>
-          <p><strong>Name:</strong> {user.name}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Password:</strong> {user.pass}</p>
-        </div>
-      )} */}
-        <hr />
-        <p>Already have an account? <a href="/login">Login</a></p>
-        <p>Forgot password? <a href="/forgot-password">Reset Password</a></p>
-        <hr />
-            <button onClick={handleClick}>Click</button>
-        <hr />
-        <h4>
-            {count}<br></br>
-            <button onClick={updateCount}>+</button>
-            <button onClick={decreaseCount}>-</button>
-         </h4>
-
-        <hr />
-        
+      <p>
+        <input
+          type="text"
+          placeholder="Enter Name"
+          onChange={(e) => setUser({ ...user, name: e.target.value })}
+        />
+      </p>
+      <p>
+        <input
+          type="text"
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          placeholder="Enter Email Address"
+        />
+      </p>
+      <p>
+        <input
+          type="password"
+          onChange={(e) => setUser({ ...user, pass: e.target.value })}
+          placeholder="New Password"
+        />
+      </p>
+      <p>
+        <button onClick={()=>{setsubmitData(user)}}>Submit</button>
+      </p>
+      <p>{submitContent}</p>
+      <hr />
+      <p>
+        <Link to="/login">Already a member? Login Here...</Link>
+      </p>
+      <hr />
+      <button onClick={handleClick}>Click</button>
+      <hr />
+      <p>
+        {count}
+        <br></br>
+        <button onClick={updateCount}>Update Count</button>
+      </p>
+      <hr />
+      <p>
+        <input type="number" onChange={(e) => setA(e.target.value)} />
+      </p>
+      <p>
+        <input type="number" onChange={(e) => setB(e.target.value)} />
+      </p>
+      <button onClick={findSum}>Submit</button>
+      <p>{result}</p>
     </div>
-  )
+  );
 }
