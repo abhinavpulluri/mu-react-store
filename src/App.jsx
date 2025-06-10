@@ -17,7 +17,7 @@ function App() {
   const [users,setUsers] = useState([]);
   const [cart, setCart] = useState({});
   const [email, setEmail] = useState();
-  const [orders, setOrders] = useState({});
+  const [orders, setOrders] = useState([]);
   return (
     <div>
       <AppContext.Provider value={{users,setUsers, cart, setCart, email, setEmail, orders, setOrders}}>
