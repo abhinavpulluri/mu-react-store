@@ -1,9 +1,12 @@
 import React from 'react'
 import './Home.css'
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AppContext } from './App';
 
 export default function Home() {
 
+    const {cart, setCart} = useContext(AppContext);
     let age = 21;
     let name = "John";
     const products = [
@@ -13,6 +16,11 @@ export default function Home() {
     ];
 
     const navigate = useNavigate();
+
+    const buyNow = (obj) => {
+        setCart({id: obj.id, name: obj.name, price: obj.price, desc: obj.desc, imgURL: obj.imgURL, qty: 1});
+        navigate('/cart');
+    }
     
     return (
     <div className='App-Home-Row'>
@@ -23,7 +31,7 @@ export default function Home() {
                 <h2>{product.name}</h2>
                 <p>{product.desc}</p>
                 <h4>Price: ₹{product.price}</h4>
-                <p><button onClick={() => navigate('/cart')}>Buy now</button></p>
+                <p><button onClick={()=>buyNow(product)}>Buy now</button></p>
                 <hr />
             </div>
         ))}

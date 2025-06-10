@@ -1,11 +1,41 @@
 import { Link, useNavigate } from "react-router-dom";
-
+import { useContext } from "react";
+import { AppContext } from "./App";
 import React from 'react'
 
+
 export default function () {
+    
+    const {cart, setCart} = useContext(AppContext);
+
+    const incrementQty = () => {
+        setCart({...cart, qty: cart.qty + 1});
+    }
+    const decrementQty = () => {
+
+        if (cart.qty > 0) {
+            setCart({...cart, qty: cart.qty - 1});
+        }
+    }
   return (
     <div>
-      <h1>Cart Component</h1>
+      <h2>My Cart</h2>
+      <img src={cart.imgURL} alt={cart.name} />
+      <h3>{cart.name}</h3>
+      <p>{cart.desc}</p>
+      <h3>Price:{cart.price}</h3>
+      <p>
+        <button onClick={decrementQty}>-</button>
+        {cart.qty}
+        <button onClick={incrementQty}>+</button>
+      </p>
+      <hr />
+      <h2>Order Value:{cart.price * cart.qty}</h2>
+      <hr />
+      <p>
+        <button>Place Order</button>
+        <button>Login to Order</button>
+      </p>
     </div>
   )
 }
