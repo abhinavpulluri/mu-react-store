@@ -1,5 +1,5 @@
 .App-Home-Row {
-    display: flex;
+    display: flex-wrap: wrap;
     justify-content: center;
 }
 

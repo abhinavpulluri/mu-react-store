@@ -9,6 +9,7 @@ export default function Order() {
     <div>
       <h3>My Orders</h3>
       {orders.map((order) => (
+        order.email === email && (
         <div key = {order.id}>
           <img src={order.imgURL} alt={order.name} />
           <h3>{order.name}</h3>
@@ -17,6 +18,7 @@ export default function Order() {
           <h4>Quantity: {order.qty}</h4>
           <hr />
         </div>
+        )
       ))}
     </div>
   )
