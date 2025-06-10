@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {useState} from 'react'
 
 export default function Register() {
-    const [user, setUser] = useState({});
+    
     const [count, setCount] = useState(0);
     const [showDetails, setShowDetails] = useState(false);
 
@@ -19,7 +19,9 @@ export default function Register() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setShowDetails(true);
+        console.log('Name:', user.name, 'Email:', user.email, 'Password:', user.pass);
     };
+
   return (
     <div>
       <h2>Register</h2>
@@ -29,18 +31,17 @@ export default function Register() {
         <p><input type="password" placeholder='Password' onChange={(e) => setUser({ ...user, pass: e.target.value })}/></p>
         <p><button type="submit">Submit</button></p>
       </form>
-      {showDetails && (
+      {/* {showDetails && (
         <div style={{marginTop: '1em', border: '1px solid #ccc', padding: '1em'}}>
           <h3>Registration Details</h3>
           <p><strong>Name:</strong> {user.name}</p>
           <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Password:</strong> {user.pass}</p>
         </div>
-      )}
+      )} */}
         <hr />
         <p>Already have an account? <a href="/login">Login</a></p>
         <p>Forgot password? <a href="/forgot-password">Reset Password</a></p>
-
         <hr />
             <button onClick={handleClick}>Click</button>
         <hr />
