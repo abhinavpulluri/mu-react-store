@@ -21,11 +21,7 @@ export default function () {
     }
 
     function handleLogin() {
-        if (!email) {
-            Navigate('/login');
-        } else {
-            Navigate('/cart');
-        }
+        Navigate('/login');
     }
   return (
     <div>
