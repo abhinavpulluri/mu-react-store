@@ -31,21 +31,30 @@ export default function () {
   return (
     <div>
       <h2>My Cart</h2>
-      <img src={cart.imgURL} alt={cart.name} />
-      <h3>{cart.name}</h3>
-      <p>{cart.desc}</p>
-      <h3>Price:{cart.price}</h3>
-      <p>
-        <button onClick={decrementQty}>-</button>
-        {cart.qty}
-        <button onClick={incrementQty}>+</button>
-      </p>
-      <hr />
-      <h2>Order Value:{cart.price * cart.qty}</h2>
-      <hr />
-      <p>
-        {email ? <button onClick = {placeOrder} >Place Order</button> : <button onClick= {handleLogin}>Login to Order</button>} 
-      </p>
+      {Object.keys(cart).length > 0 ? (
+        <>
+          <h3>{cart.name}</h3>
+          <p>{cart.desc}</p>
+          <h3>Price:{cart.price}</h3>
+          <p>
+            <button onClick={decrementQty}>-</button>
+            {cart.qty}
+            <button onClick={incrementQty}>+</button>
+          </p>
+          <hr />
+          <h2>Order Value:{cart.price * cart.qty}</h2>
+          <hr />
+          <p>
+            {email ? (
+              <button onClick={placeOrder}>Place Order</button>
+            ) : (
+              <button onClick={handleLogin}>Login to Order</button>
+            )}
+          </p>
+        </>
+      ) : (
+        <h3>Your cart is empty</h3>
+      )}
     </div>
   )
 }
