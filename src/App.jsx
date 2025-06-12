@@ -12,6 +12,8 @@ import Cart from "./Cart";
 import Logout from "./Logout";
 import Order from "./Order";
 import Product from "./Product";
+import axios from "axios";
+import { useEffect } from "react";
 
 export const AppContext = createContext();
 function App() {
@@ -19,6 +21,20 @@ function App() {
   const [cart, setCart] = useState({});
   const [email, setEmail] = useState();
   const [orders, setOrders] = useState([]);
+
+  const fetchUsers = async() => {
+    try {
+      const url = "http://localhost:8080/users";
+      const res = await axios.get(url);
+      setUsers(res.data);
+      } catch (error) {
+            console.error('Error fetching users:', error);
+      }
+  }
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   return (
     <div>
       <AppContext.Provider value={{users,setUsers, cart, setCart, email, setEmail, orders, setOrders}}>

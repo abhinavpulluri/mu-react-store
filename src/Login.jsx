@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "./App";
+
 export default function Login() {
   const [user, setUser] = useState({});
   const [error, setError] = useState();
   const Navigate = useNavigate();
   const { users, setEmail } = useContext(AppContext);
+  
   const handleSubmit = () => {
+    console.log(users);
     const found = users.find(
       (elem) => elem.email === user.email && elem.pass === user.pass
     );
@@ -18,6 +21,10 @@ export default function Login() {
       Navigate("/");
     }
   };
+
+  
+  
+
   return (
     <div>
       <h2>Login Form</h2>
