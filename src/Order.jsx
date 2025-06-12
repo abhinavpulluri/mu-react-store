@@ -8,9 +8,9 @@ export default function Order() {
   return (
     <div>
       <h3>My Orders</h3>
-      {orders.map((order) => (
+      {orders.map((order, index) => (
         order.email === email && (
-        <div key = {order.id}>
+        <div key={`${order.id}-${index}`}>
           <img src={order.imgURL} alt={order.name} />
           <h3>{order.name}</h3>
           <p>{order.desc}</p>

@@ -5,7 +5,7 @@ import React from 'react'
 import Login from "./Login";
 
 
-export default function () {
+export default function Cart() {
     
     const Navigate = useNavigate();
     const {cart, setCart, email, orders, setOrders} = useContext(AppContext);
