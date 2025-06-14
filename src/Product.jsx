@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default function Product() {
     const [products, setProducts] = useState([]);
-
+    const API = import.meta.env.VITE_API_URL;
     const fetchProducts = async () => {
         try {
             const url = "http://localhost:8080/products";

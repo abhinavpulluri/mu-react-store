@@ -21,10 +21,11 @@ function App() {
   const [cart, setCart] = useState({});
   const [email, setEmail] = useState();
   const [orders, setOrders] = useState([]);
+  const API = import.meta.env.VITE_API_URL;
 
   const fetchUsers = async() => {
     try {
-      const url = "http://localhost:8080/users";
+      const url = `${API}/api/users`;
       const res = await axios.get(url);
       setUsers(res.data);
       } catch (error) {
